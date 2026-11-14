@@ -1,0 +1,4 @@
+project_id = "lexirus-diagnostics"
+
+[functions.diagnostic-upload]
+verify_jwt = false
