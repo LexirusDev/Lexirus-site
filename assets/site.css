@@ -892,10 +892,11 @@ summary {cursor:pointer; font-size:18px; color:var(--brand);}
 .feature-list > div {margin:0 0 22px;}
 .feature-list dt {font-size:19px;color:var(--near-black);}
 .feature-list dd {margin:5px 0 0;color:var(--olive);}
-.product-shot {display:block;width:240px;height:auto;border-radius:8px;}
+.product-shot-frame {width:240px;aspect-ratio:639 / 1186;overflow:hidden;border-radius:8px;}
+.product-shot {display:block;width:100%;height:auto;margin-top:-31.3%;}
 .compact-feedback {margin:44px 0 0;max-width:760px;}
 .compact-feedback h2 {font-size:26px;}
 .compact-feedback .support-links {font-size:14px;margin-bottom:0;}
 .page:has(.compact-hero) {padding-bottom:56px;}
-@media(max-width:768px){.compact-overview{grid-template-columns:minmax(0,1fr) 200px;gap:32px;}.product-shot{width:200px;}}
-@media(max-width:480px){.compact-hero .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:16px;}.compact-hero .hero-grid > div{display:contents;}.compact-hero h1{grid-column:1;grid-row:1;font-size:46px;margin:0;align-self:center;}.compact-hero .hero-icon{grid-column:2;grid-row:1;width:72px;height:72px;border-radius:16px;}.compact-hero .tagline,.compact-hero .hero-copy,.compact-hero .actions{grid-column:1 / -1;margin:0;}.compact-hero .tagline{font-size:24px;margin-top:8px;}.compact-hero .actions{margin-top:8px;}.compact-hero{padding-bottom:28px;margin-bottom:32px;}.compact-overview{grid-template-columns:1fr;gap:12px;margin:32px 0;}.product-shot{width:180px;margin:0 auto;}.compact-feedback{margin-top:32px;}.compact-overview h2{font-size:26px;}}
+@media(max-width:768px){.compact-overview{grid-template-columns:minmax(0,1fr) 200px;gap:32px;}.product-shot-frame{width:200px;}}
+@media(max-width:480px){.compact-hero .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:16px;}.compact-hero .hero-grid > div{display:contents;}.compact-hero h1{grid-column:1;grid-row:1;font-size:46px;margin:0;align-self:center;}.compact-hero .hero-icon{grid-column:2;grid-row:1;width:72px;height:72px;border-radius:16px;}.compact-hero .tagline,.compact-hero .hero-copy,.compact-hero .actions{grid-column:1 / -1;margin:0;}.compact-hero .tagline{font-size:24px;margin-top:8px;}.compact-hero .actions{margin-top:8px;}.compact-hero{padding-bottom:28px;margin-bottom:32px;}.compact-overview{grid-template-columns:1fr;gap:12px;margin:32px 0;}.product-shot-frame{width:180px;margin:0 auto;}.compact-feedback{margin-top:32px;}.compact-overview h2{font-size:26px;}}
