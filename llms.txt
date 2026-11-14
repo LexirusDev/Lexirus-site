@@ -1,0 +1,9 @@
+# Lexirus
+
+Offline Russian–Chinese dictionary. Core features run on your device.
+
+- Home: https://lexirus.cn/
+- Support: https://lexirus.cn/support/
+- Crash reports: https://lexirus.cn/support/crash/
+- Privacy: https://lexirus.cn/privacy/
+- Details: https://lexirus.cn/llms-full.txt

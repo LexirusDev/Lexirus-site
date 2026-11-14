@@ -1,0 +1,11 @@
+{
+  "name": "lexirus-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/diagnostic.test.js",
+    "check": "python3 scripts/build-site.py --check",
+    "build": "python3 scripts/build-site.py",
+    "serve": "python3 -m http.server 4173"
+  }
+}

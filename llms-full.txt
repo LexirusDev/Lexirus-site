@@ -1,0 +1,28 @@
+# Lexirus
+
+Offline Russian–Chinese dictionary with word forms, stress marks, examples and personal notes. Core features run on-device without a Lexirus account. Download: https://apps.apple.com/cn/app/lexirus/id6819521030 .
+
+The crash tool at https://lexirus.cn/support/crash/ reads JSON-format Lexirus .ips logs (also .json/.txt), up to 5 MB, entirely in the browser. It extracts allowlisted technical fields and excludes names, contact details, search history, favorites, notes, device identifiers and the original file and filename. Users preview and download Lexirus-diagnostic.json, then manually attach it in their email app and send it to xzwdev@163.com. The website does not receive file uploads. Email includes the sender address and anything the user writes or attaches. Mail links do not attach files or confirm delivery. Reply to the original support email to request attachment deletion. Website hosting providers may process network metadata. Legacy text crash logs and JetsamEvent are unsupported.
+
+Thanks to @我要吃大西瓜: their feedback helped improve iOS 15.8 series crashes. No specific fix version or complete resolution is asserted.
+
+## 常见问题
+
+Lexirus 是一款什么应用？
+Lexirus 是面向俄语学习者的离线俄汉词典，支持词形、重音、例句和个人笔记。
+
+主要功能需要联网吗？
+主要词典功能在设备本地运行；访问 App Store、官网或主动提交反馈时需要网络连接。
+
+使用前需要注册账号吗？
+使用主要词典功能无需注册或登录 Lexirus 账号，个人记录保存在本机。
+
+崩溃诊断会包含搜索历史吗？
+本页面在本机生成的诊断文件不包含搜索历史、收藏、笔记或联系方式。你可以预览后下载，通过邮件手动添加附件发送。
+
+找不到崩溃日志怎么办？
+你仍可通过邮件说明遇到的问题和复现步骤，不必为了收集日志反复触发崩溃。
+
+如何反馈词典错误或功能建议？
+请联系 xzwdev@163.com，说明相关词条或使用场景；不需要发送完整个人资料备份。
+
