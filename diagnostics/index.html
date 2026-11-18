@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Lexirus 诊断日志安全上传页面。">
+  <meta name="robots" content="noindex,nofollow">
+  <title>诊断日志上传 — Lexirus</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: #1d1d1f;
+      background: #f5f5f7;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-text-size-adjust: 100%;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; line-height: 1.65; }
+    main { width: min(620px, calc(100% - 32px)); margin: 0 auto; padding: max(44px, env(safe-area-inset-top)) 0 max(40px, env(safe-area-inset-bottom)); }
+    .brand { color: #86868b; font-size: 14px; letter-spacing: .02em; margin: 0 0 22px; }
+    h1 { font-size: clamp(29px, 7vw, 36px); line-height: 1.2; letter-spacing: -.035em; margin: 0 0 10px; }
+    .lead { color: #6e6e73; margin: 0 0 26px; }
+    .panel { background: #fff; border: 1px solid #e8e8ed; border-radius: 22px; padding: 24px; box-shadow: 0 8px 30px rgba(0,0,0,.035); }
+    h2 { font-size: 17px; margin: 0 0 10px; }
+    p { margin: 10px 0; }
+    .muted { color: #6e6e73; font-size: 14px; }
+    .steps { padding-left: 22px; margin: 10px 0 20px; color: #424245; }
+    .steps li { margin: 5px 0; }
+    .field { margin-top: 18px; }
+    label.field-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+    input[type="password"], input[type="file"], textarea {
+      width: 100%; font: inherit; color: inherit; border: 1px solid #d2d2d7; border-radius: 12px; background: #fff; padding: 12px 13px;
+    }
+    input[type="file"] { padding: 10px; font-size: 14px; }
+    textarea { min-height: 92px; resize: vertical; }
+    input:focus, textarea:focus { outline: 3px solid rgba(0,113,227,.18); border-color: #0071e3; }
+    .file-help { margin-top: 7px; font-size: 13px; color: #6e6e73; }
+    .consent { display: flex; align-items: flex-start; gap: 10px; margin-top: 20px; font-size: 13px; color: #424245; }
+    .consent input { margin-top: 5px; flex: 0 0 auto; width: 17px; height: 17px; }
+    button {
+      width: 100%; margin-top: 20px; border: 0; border-radius: 13px; padding: 14px 18px;
+      color: #fff; background: #0071e3; font: inherit; font-weight: 650; cursor: pointer;
+    }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+    .status { min-height: 24px; margin-top: 14px; font-size: 14px; }
+    .status.error { color: #c62828; }
+    .status.success { color: #16803c; }
+    .notice { margin-top: 18px; padding: 14px 15px; border-radius: 13px; background: #f5f5f7; color: #555; font-size: 13px; }
+    a { color: #06c; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { margin-top: 24px; color: #86868b; font-size: 12px; text-align: center; }
+    @media (max-width: 480px) { main { padding-top: 32px; } .panel { padding: 19px; border-radius: 18px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="brand">LEXIRUS · SUPPORT</p>
+    <h1>诊断日志上传</h1>
+    <p class="lead">如果 Lexirus 出现闪退或异常，可以在这里把 iPhone 生成的诊断报告直接发送给开发者。无需安装微信或邮箱 App。</p>
+
+    <section class="panel" aria-labelledby="howto">
+      <h2 id="howto">如何找到 .ips 文件</h2>
+      <ol class="steps">
+        <li>打开 iPhone「设置」→「隐私与安全性」→「分析与改进」→「分析数据」。</li>
+        <li>找到名称以 <code>Lexirus</code> 或 <code>JetsamEvent</code> 开头的最新报告。</li>
+        <li>打开报告，点分享按钮，选择「存储到文件」。</li>
+        <li>回到 Safari 打开本页面，选择刚才保存的报告并上传。</li>
+      </ol>
+      <p class="muted">只需上传与 Lexirus 故障时间相对应的报告；如果不确定，可以先询问开发者。</p>
+
+      <form id="upload-form">
+        <div class="field">
+          <label class="field-label" for="access-code">上传口令</label>
+          <input id="access-code" name="code" type="password" autocomplete="one-time-code" required maxlength="128" placeholder="请向 Lexirus 开发者获取">
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="report-file">诊断报告（.ips）</label>
+          <input id="report-file" name="file" type="file" accept=".ips,application/json,text/plain" required>
+          <p class="file-help" id="file-help">支持 Lexirus 崩溃报告和 JetsamEvent 报告，单个文件最大 5 MB。</p>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="issue-note">补充说明（选填）</label>
+          <textarea id="issue-note" name="note" maxlength="500" placeholder="例如：iOS 15.8.4，打开「今日推荐 20 词」时闪退。"></textarea>
+        </div>
+
+        <label class="consent">
+          <input id="consent" type="checkbox" required>
+          <span>我知悉诊断报告可能包含设备型号、系统版本、崩溃堆栈、诊断标识符及进程名称；我自愿将此文件提交给 Lexirus 开发者，仅用于故障排查。文件会保存在非公开存储中，并在 30 天内删除。<a href="../privacy/">查看隐私政策</a>。</span>
+        </label>
+
+        <button id="submit-button" type="submit" disabled>上传诊断报告</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="notice" id="setup-notice">
+        上传服务正在配置中，暂未开放。请勿通过其他方式发送账号密码或完整个人资料备份。
+      </div>
+    </section>
+
+    <footer>Lexirus · <a href="../support/">技术支持</a> · <a href="../privacy/">隐私政策</a></footer>
+  </main>
+
+  <script src="./config.js"></script>
+  <script>
+    (() => {
+      const config = window.LEXIRUS_DIAGNOSTICS || {};
+      const form = document.getElementById("upload-form");
+      const fileInput = document.getElementById("report-file");
+      const fileHelp = document.getElementById("file-help");
+      const button = document.getElementById("submit-button");
+      const status = document.getElementById("status");
+      const setupNotice = document.getElementById("setup-notice");
+      const maxBytes = Number(config.maxFileSizeBytes) || 5 * 1024 * 1024;
+      const endpointReady = typeof config.endpoint === "string" && /^https:\/\//i.test(config.endpoint);
+
+      if (endpointReady) {
+        button.disabled = false;
+        setupNotice.hidden = true;
+      }
+
+      const showStatus = (message, kind = "") => {
+        status.textContent = message;
+        status.className = "status" + (kind ? " " + kind : "");
+      };
+
+      fileInput.addEventListener("change", () => {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+        if (!/\.ips$/i.test(file.name)) {
+          fileInput.value = "";
+          fileHelp.textContent = "请选择 .ips 格式的 iPhone 诊断报告。";
+          showStatus("文件格式不正确。", "error");
+          return;
+        }
+        if (file.size > maxBytes) {
+          fileInput.value = "";
+          fileHelp.textContent = "文件超过 5 MB，请只选择单份诊断报告。";
+          showStatus("文件太大，无法上传。", "error");
+          return;
+        }
+        fileHelp.textContent = file.name + " · " + (file.size / 1024).toFixed(1) + " KB";
+        showStatus("");
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!endpointReady) {
+          showStatus("上传服务尚未启用，请稍后再试。", "error");
+          return;
+        }
+        const file = fileInput.files && fileInput.files[0];
+        const code = document.getElementById("access-code").value.trim();
+        const consent = document.getElementById("consent").checked;
+        if (!file || !/\.ips$/i.test(file.name) || file.size > maxBytes || !code || !consent) {
+          showStatus("请检查文件、上传口令和隐私确认。", "error");
+          return;
+        }
+
+        const payload = new FormData();
+        payload.append("file", file, file.name);
+        payload.append("code", code);
+        payload.append("note", document.getElementById("issue-note").value.trim());
+
+        button.disabled = true;
+        button.textContent = "正在安全上传…";
+        showStatus("正在上传，请保持页面打开。");
+        try {
+          const response = await fetch(config.endpoint, { method: "POST", body: payload });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || "上传失败，请检查口令或稍后重试。");
+          form.reset();
+          fileHelp.textContent = "文件已收到。";
+          showStatus("上传成功！你可以告诉开发者已经提交，无需再通过其他方式发送文件。", "success");
+        } catch (error) {
+          showStatus(error && error.message ? error.message : "网络异常，上传未完成。", "error");
+        } finally {
+          button.disabled = false;
+          button.textContent = "上传诊断报告";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
